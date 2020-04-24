@@ -42,60 +42,47 @@ const CartProvider: React.FC = ({ children }) => {
 
   const increment = useCallback(
     async id => {
-      const productIndex = products.findIndex(product => product.id === id);
+      // Retiro o produto que será alterado, retornando um novo array sem ele
+      const filterProducts = products.filter(product => product.id !== id);
+      // Busco o produto que terá a quantidade alterada
+      const newProduct = products.find(product => product.id === id);
+      // Seto o estado com o array novo e o produto com a nova quantidade
+      if (newProduct) {
+        newProduct.quantity += 1;
 
-      if (productIndex >= 0) {
-        // Retiro o produto que será alterado, retornando um novo array sem ele
-        const filterProducts = products.filter(product => product.id !== id);
-        // Busco o produto que terá a quantidade alterada
-        const newProduct = products.find(product => product.id === id);
-        // Seto o estado com o array novo e o produto com a nova quantidade
-        if (newProduct) {
-          newProduct.quantity += 1;
-
-          setProducts([...filterProducts, newProduct]);
-
-          await AsyncStorage.setItem(
-            '@GoMarketplace:products',
-            JSON.stringify([...filterProducts, newProduct]),
-          );
-        }
+        setProducts([...filterProducts, newProduct]);
       }
+
+      await AsyncStorage.setItem(
+        '@GoMarketplace:products',
+        JSON.stringify(products),
+      );
     },
     [products],
   );
 
   const decrement = useCallback(
     async id => {
-      const productIndex = products.findIndex(product => product.id === id);
+      // Retiro o produto que será alterado retornando um novo array sem ele
+      const filterProducts = products.filter(product => product.id !== id);
+      // Busco o produto que terá a quantidade alterada
+      const newProduct = products.find(product => product.id === id);
+      // Seto o estado com o array novo e o produto novo
+      if (newProduct) {
+        // Se houver apenas uma unidade do produto, retiro do carrinho
+        if (newProduct.quantity <= 1) {
+          setProducts(filterProducts);
+        } else {
+          newProduct.quantity -= 1;
 
-      if (productIndex >= 0) {
-        // Retiro o produto que será alterado retornando um novo array sem ele
-        const filterProducts = products.filter(product => product.id !== id);
-        // Busco o produto que terá a quantidade alterada
-        const newProduct = products.find(product => product.id === id);
-        // Seto o estado com o array novo e o produto novo
-        if (newProduct) {
-          // Se houver apenas uma unidade do produto, retiro do carrinho
-          if (newProduct.quantity <= 1) {
-            setProducts(filterProducts);
-
-            await AsyncStorage.setItem(
-              '@GoMarketplace:products',
-              JSON.stringify(filterProducts),
-            );
-          } else {
-            newProduct.quantity -= 1;
-
-            setProducts([...filterProducts, newProduct]);
-
-            await AsyncStorage.setItem(
-              '@GoMarketplace:products',
-              JSON.stringify([...filterProducts, newProduct]),
-            );
-          }
+          setProducts([...filterProducts, newProduct]);
         }
       }
+
+      await AsyncStorage.setItem(
+        '@GoMarketplace:products',
+        JSON.stringify(products),
+      );
     },
     [products],
   );
