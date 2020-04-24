@@ -44,5 +44,5 @@
 ## 📸 Preview
 
 <h1 align="center">
-  <img src="https://user-images.githubusercontent.com/11545976/80264263-f5b21c00-8669-11ea-9850-9fd51048db2c.gif">
+  <img height="600" src="https://user-images.githubusercontent.com/11545976/80264263-f5b21c00-8669-11ea-9850-9fd51048db2c.gif">
 </h1>
