@@ -94,7 +94,7 @@ export const TotalProductsContainer = styled.View`
   flex-direction: row;
   background: #e83f5b;
 
-  padding: 20px 40px;
+  padding: 15px 20px;
   justify-content: space-between;
   align-items: center;
 `;
@@ -109,7 +109,7 @@ export const TotalProductsText = styled.Text`
 `;
 
 export const SubtotalValue = styled.Text`
-  font-size: 16px;
+  font-size: 20px;
   color: #fff;
   font-weight: bold;
 `;
