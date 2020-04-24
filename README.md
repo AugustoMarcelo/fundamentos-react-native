@@ -2,11 +2,11 @@
   <img src="https://user-images.githubusercontent.com/11545976/80264172-9bb15680-8669-11ea-9bfa-fc2b817c21ec.png">
 </h1>
 
-<h2 align="center">
+<h3 align="center">
   [GoStack11] | Desafio: Fundamentos React Native
 
   [Descrição do desafio](https://github.com/Rocketseat/bootcamp-gostack-desafios/tree/master/desafio-fundamentos-react-native)
-</h2>
+</h3>
 
 ---
 
@@ -18,6 +18,7 @@
   - @react-native-community/async-storage
   - @react-navigation
   - json-server
+  - Context API
 
 ## 💻 Instruções para executar o projeto
 
