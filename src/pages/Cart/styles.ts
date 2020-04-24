@@ -113,3 +113,18 @@ export const SubtotalValue = styled.Text`
   color: #fff;
   font-weight: bold;
 `;
+
+export const EmptyContent = styled.View`
+  background: #fff;
+  padding: 15px 10px;
+  border-radius: 5px;
+  margin: 5px;
+  flex: 1;
+
+  align-items: center;
+  justify-content: center;
+`;
+
+export const EmptyContentText = styled.Text`
+  font-size: 14px;
+`;
