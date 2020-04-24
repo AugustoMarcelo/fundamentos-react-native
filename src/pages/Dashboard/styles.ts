@@ -4,6 +4,7 @@ import { FlatList } from 'react-native';
 export const Container = styled.SafeAreaView`
   flex: 1;
   align-items: center;
+  background: #e5e5e5;
 `;
 
 export const ProductContainer = styled.View`
