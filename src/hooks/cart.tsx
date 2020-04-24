@@ -23,6 +23,8 @@ interface CartContext {
   decrement(id: string): void;
 }
 
+const ASYNC_STORAGE_KEY = '@GoMarketplace:products';
+
 const CartContext = createContext<CartContext | null>(null);
 
 const CartProvider: React.FC = ({ children }) => {
@@ -30,7 +32,7 @@ const CartProvider: React.FC = ({ children }) => {
 
   useEffect(() => {
     async function loadProducts(): Promise<void> {
-      const data = await AsyncStorage.getItem('@GoMarketplace:products');
+      const data = await AsyncStorage.getItem(ASYNC_STORAGE_KEY);
 
       if (data) {
         setProducts(JSON.parse(data));
@@ -53,10 +55,7 @@ const CartProvider: React.FC = ({ children }) => {
         setProducts([...filterProducts, newProduct]);
       }
 
-      await AsyncStorage.setItem(
-        '@GoMarketplace:products',
-        JSON.stringify(products),
-      );
+      await AsyncStorage.setItem(ASYNC_STORAGE_KEY, JSON.stringify(products));
     },
     [products],
   );
@@ -79,10 +78,7 @@ const CartProvider: React.FC = ({ children }) => {
         }
       }
 
-      await AsyncStorage.setItem(
-        '@GoMarketplace:products',
-        JSON.stringify(products),
-      );
+      await AsyncStorage.setItem(ASYNC_STORAGE_KEY, JSON.stringify(products));
     },
     [products],
   );
@@ -94,7 +90,7 @@ const CartProvider: React.FC = ({ children }) => {
       if (productIndex < 0) {
         setProducts(oldState => [...oldState, { ...product, quantity: 1 }]);
         await AsyncStorage.setItem(
-          '@GoMarketplace:products',
+          ASYNC_STORAGE_KEY,
           JSON.stringify([...products, { ...product, quantity: 1 }]),
         );
       } else {
